@@ -1,3 +1,5 @@
+package copied;
+
 import static java.lang.Math.min;
 
 import java.util.ArrayList;
