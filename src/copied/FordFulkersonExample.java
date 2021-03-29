@@ -186,35 +186,47 @@ public class FordFulkersonExample {
 
     public static void main(String[] args) {
         // n is the number of nodes including the source and the sink.
-        int n = 12;
 
-        int s = n - 2;
-        int t = n - 1;
+        InputReader fileReader = new InputReader("bridge_1.txt");
+        List<Integer> inputs = fileReader.getIntegerEdgesList();
+
+        int n = fileReader.getNumVertices();
+        int s = 0;
+        int t = n-1;
 
         NetworkFlowSolverBase solver = new FordFulkersonDfsSolver(n, s, t);
+        for (int i = 0; i < inputs.size(); i +=3)
+            solver.addEdge(inputs.get(i), inputs.get(i+1), inputs.get(i+2));
 
-        // Edges from source
-        solver.addEdge(s, 0, 10);
-        solver.addEdge(s, 1, 5);
-        solver.addEdge(s, 2, 10);
 
-        // Middle edges
-        solver.addEdge(0, 3, 10);
-        solver.addEdge(1, 2, 10);
-        solver.addEdge(2, 5, 15);
-        solver.addEdge(3, 1, 2);
-        solver.addEdge(3, 6, 15);
-        solver.addEdge(4, 1, 15);
-        solver.addEdge(4, 3, 3);
-        solver.addEdge(5, 4, 4);
-        solver.addEdge(5, 8, 10);
-        solver.addEdge(6, 7, 10);
-        solver.addEdge(7, 4, 10);
-        solver.addEdge(7, 5, 7);
-
-        // Edges to sink
-        solver.addEdge(6, t, 15);
-        solver.addEdge(8, t, 10);
+//        int n = 12;
+//
+//        int s = n - 2;
+//        int t = n - 1;
+//
+//
+//        // Edges from source
+//        solver.addEdge(s, 0, 10);
+//        solver.addEdge(s, 1, 5);
+//        solver.addEdge(s, 2, 10);
+//
+//        // Middle edges
+//        solver.addEdge(0, 3, 10);
+//        solver.addEdge(1, 2, 10);
+//        solver.addEdge(2, 5, 15);
+//        solver.addEdge(3, 1, 2);
+//        solver.addEdge(3, 6, 15);
+//        solver.addEdge(4, 1, 15);
+//        solver.addEdge(4, 3, 3);
+//        solver.addEdge(5, 4, 4);
+//        solver.addEdge(5, 8, 10);
+//        solver.addEdge(6, 7, 10);
+//        solver.addEdge(7, 4, 10);
+//        solver.addEdge(7, 5, 7);
+//
+//        // Edges to sink
+//        solver.addEdge(6, t, 15);
+//        solver.addEdge(8, t, 10);
 
         // Prints:
         // Maximum Flow is: 23

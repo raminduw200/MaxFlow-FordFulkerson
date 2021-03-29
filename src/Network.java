@@ -1,25 +1,30 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Graph {
-    private final int source, target, numVertices;
-    private int maxFlow;
-    private boolean[] visited;
-    // private Edge[][] graph   Can't instantiate like this since the we need something like inside
+public abstract class Network {
+    protected final int source, target, numVertices;
+    protected int maxFlow;
+    public boolean[] visited;
+    // protected Edge[][] graph   Can't instantiate like this since  we need something like inside
     // array is type of Edge list. Something like [[type of these arrays are Edge], [], [], []]
-    private List<Edge>[] graph;
+    protected List<Edge>[] graph;
 
-    public Graph(int source, int target, int numVertices){
+    public Network(int source, int target, int numVertices){
         this.source = source;
         this.target = target;
         this.numVertices = numVertices;
         initializeEmptyGraph();
-        this.visited = new boolean[numVertices];
     }
 
     private void initializeEmptyGraph(){
+        graph = new List[numVertices];          // initialize the size of the first list.
+        visited = new boolean[numVertices];     // initialize the size of the visited node array.
         for (int i = 0; i < numVertices; i++){
-            this.graph[i] = new ArrayList<Edge>();
+            // initialize an empty array lists inside the graph array.
+            graph[i] = new ArrayList<Edge>();
+
+            // initializing all nodes as not visited.
+            visited[i] = false;
         }
     }
 
@@ -38,17 +43,17 @@ public class Graph {
 
         /*
         Adding edges to the graph where the graph looks,
-                    [
-            start -> [startingEdge (start --- flow/capacity ---> end), (other neighbour edges to starting node...)],
+                   [
+        0th index  -> [startingEdge (start --- flow/capacity ---> end), (other neighbour edges to starting node...)],
+        1st index  -> [1 Edge (1  --- flow/capacity ---> end), (other neighbour edges to 1 node...)],
                      ...
                      ...
-            end   -> [endingEdge (end -- flow/capacity --> start), (other neighbour edges to ending node...)]
+        nth index    -> [endingEdge (end -- flow/capacity --> start), (other neighbour edges to ending node...)]
+                   ]
+        in this List each index has edges which are starting from the index. 1st index has all neighbour nodes which
+        are connected to the 1st node. Those are saved as edges.
          */
         graph[start].add(edge1);
         graph[end].add(edge2);
-    }
-
-    public List<Edge>[] getGraph() {
-        return graph;
     }
 }

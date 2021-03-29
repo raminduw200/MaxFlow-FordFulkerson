@@ -97,13 +97,15 @@ public class MaxFlow_Ford_Fulkerson {
 
     public static void main(String[] args) {
         int vertices = 6;
-        int graph[][] = { {0, 10, 8, 0, 0, 0},
+        int graph[][] = {
+                {0, 10, 8, 0, 0, 0},
                 {0, 0, 5, 5, 0, 0},
                 {0, 4, 0, 0, 10, 0},
                 {0, 0, 9, 0, 10, 3},
                 {0, 0, 0, 6, 0, 14},
                 {0, 0, 0, 0, 0, 0}
         };
+
         Graph g = new Graph(vertices, graph);
         int source = 0;
         int destination = 5;

@@ -5,19 +5,35 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class Reader {
+public class InputReader {
     private int numVertices;
     private List<Integer> integerEdgesList;
 
+    public InputReader(String fileName) {
+        try {
+            readFile(fileName);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
-
-    public void readFile() throws FileNotFoundException {
-        Scanner s = new Scanner(new File("benchmarks/bridge_1.txt"));
+    private void readFile(String fileName) throws FileNotFoundException {
+        Scanner s = new Scanner(new File("benchmarks/" + fileName));
 
         integerEdgesList = new ArrayList<Integer>();
         while (s.hasNext()){
             integerEdgesList.add(Integer.valueOf(s.next()));
         }
         s.close();
+
+        numVertices = integerEdgesList.remove(0);
+    }
+
+    public int getNumVertices() {
+        return numVertices;
+    }
+
+    public List<Integer> getIntegerEdgesList() {
+        return integerEdgesList;
     }
 }
