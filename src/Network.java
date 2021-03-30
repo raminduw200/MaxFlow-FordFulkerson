@@ -1,9 +1,9 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public abstract class Network {
     protected final int source, target, numVertices;
-    protected int maxFlow;
     public boolean[] visited;
     // protected Edge[][] graph   Can't instantiate like this since  we need something like inside
     // array is type of Edge list. Something like [[type of these arrays are Edge], [], [], []]
@@ -21,7 +21,7 @@ public abstract class Network {
         visited = new boolean[numVertices];     // initialize the size of the visited node array.
         for (int i = 0; i < numVertices; i++){
             // initialize an empty array lists inside the graph array.
-            graph[i] = new ArrayList<Edge>();
+            graph[i] = new LinkedList<Edge>();
 
             // initializing all nodes as not visited.
             visited[i] = false;
@@ -55,5 +55,13 @@ public abstract class Network {
          */
         graph[start].add(edge1);
         graph[end].add(edge2);
+    }
+
+    public int getSource() {
+        return source;
+    }
+
+    public int getTarget() {
+        return target;
     }
 }

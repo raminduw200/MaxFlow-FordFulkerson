@@ -1,6 +1,8 @@
 package copied;
 
+import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class MaxFlow_Ford_Fulkerson {
@@ -96,15 +98,29 @@ public class MaxFlow_Ford_Fulkerson {
     }
 
     public static void main(String[] args) {
-        int vertices = 6;
-        int graph[][] = {
-                {0, 10, 8, 0, 0, 0},
-                {0, 0, 5, 5, 0, 0},
-                {0, 4, 0, 0, 10, 0},
-                {0, 0, 9, 0, 10, 3},
-                {0, 0, 0, 6, 0, 14},
-                {0, 0, 0, 0, 0, 0}
-        };
+        InputReader fileReader = new InputReader("bridge_2.txt");
+        List<Integer> inputs = fileReader.getIntegerEdgesList();
+
+        int vertices = fileReader.getNumVertices();
+//        int vertices = 6;
+        int[][] graph = new int[vertices][vertices];
+        for (int[] row : graph) {
+            Arrays.fill(row, 0);
+        }
+
+        for (int i = 0; i < inputs.size(); i += 3) {
+            graph[inputs.get(i)][inputs.get(i+1)] = inputs.get(i+2);
+        }
+        for (int[] row : graph)
+            System.out.println(Arrays.toString(row));
+        //        int graph[][] = {
+//                {0, 10, 8, 0, 0, 0},
+//                {0, 0, 5, 5, 0, 0},
+//                {0, 4, 0, 0, 10, 0},
+//                {0, 0, 9, 0, 10, 3},
+//                {0, 0, 0, 6, 0, 14},
+//                {0, 0, 0, 0, 0, 0}
+//        };
 
         Graph g = new Graph(vertices, graph);
         int source = 0;

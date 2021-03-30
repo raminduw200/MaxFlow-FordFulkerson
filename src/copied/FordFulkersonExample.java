@@ -187,7 +187,7 @@ public class FordFulkersonExample {
     public static void main(String[] args) {
         // n is the number of nodes including the source and the sink.
 
-        InputReader fileReader = new InputReader("bridge_1.txt");
+        InputReader fileReader = new InputReader("bridge_9.txt");
         List<Integer> inputs = fileReader.getIntegerEdgesList();
 
         int n = fileReader.getNumVertices();
