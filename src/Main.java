@@ -3,7 +3,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         for (int j = 1; j < 10; j++) {
-            InputReader fileReader = new InputReader(String.format("bridge_%s.txt", j));
+            InputReader fileReader = new InputReader(String.format("ladder_%s.txt", j));
             List<Integer> inputs = fileReader.getIntegerEdgesList();
 
             int n = fileReader.getNumVertices();
@@ -17,7 +17,13 @@ public class Main {
 //        for (List edges: solve.graph)
 //            System.out.println(edges);
 
+            long startTime = System.currentTimeMillis();
+
             System.out.println("Max Flow is : " + solve.getMaxFlow());
+
+            long endTime = System.currentTimeMillis();
+            long totalTime = endTime - startTime;
+            System.out.println("Time spend : " + totalTime);
         }
     }
 }
