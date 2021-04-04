@@ -1,4 +1,6 @@
-public class Edge {
+import java.io.ObjectInputStream;
+
+public class Edge implements Cloneable{
     private final int startNode, endNode, capacity;
     private int flow;
     public Edge residualEdge;
@@ -15,8 +17,8 @@ public class Edge {
     on the residual edge bottle neck capacity will be deducted if an augmenting path exists.
      */
     public void increaseByBottleNeckCapacity(int bottleNeckCapacity){
-        this.flow += bottleNeckCapacity;
-        this.residualEdge.flow -= bottleNeckCapacity;
+        flow += bottleNeckCapacity;
+        residualEdge.flow -= bottleNeckCapacity;
     }
 
     public int getCapacity() {
@@ -27,6 +29,10 @@ public class Edge {
         return flow;
     }
 
+    public void resetEdge(){
+        flow = 0;
+    }
+
     public int getStartNode() {
         return startNode;
     }
@@ -35,8 +41,15 @@ public class Edge {
         return endNode;
     }
 
+    public Object clone() throws CloneNotSupportedException{
+        return super.clone();
+    }
+
     @Override
     public String toString() {
-        return  String.format("Edge : %2s ----%3d /%3d----> %2s", startNode, flow, capacity, endNode);
+        if (this.capacity == 0)
+            return  String.format("REdge: %2s --%3d /%3d--> %2s", startNode, flow, capacity, endNode);
+        else
+            return  String.format("Edge : %2s --%3d /%3d--> %2s", startNode, flow, capacity, endNode);
     }
 }

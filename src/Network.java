@@ -21,7 +21,7 @@ public abstract class Network {
         visited = new boolean[numVertices];     // initialize the size of the visited node array.
         for (int i = 0; i < numVertices; i++){
             // initialize an empty array lists inside the graph array.
-            graph[i] = new LinkedList<Edge>();
+            graph[i] = new ArrayList<Edge>();
 
             // initializing all nodes as not visited.
             visited[i] = false;
@@ -57,11 +57,46 @@ public abstract class Network {
         graph[end].add(edge2);
     }
 
+    public boolean deleteEdge(int start, int end) {
+        Edge removeEdge = searchEdge(start, end);
+        if (removeEdge != null) {
+            graph[start].remove(removeEdge);
+            graph[end].remove(removeEdge.residualEdge);
+            return true;
+        }
+        return false;
+    }
+
+    public Edge searchEdge(int start, int end) {
+        List<Edge> startingEdges = graph[start];    //  Edges of starting nodes
+        for (Edge edge : startingEdges){
+            if (edge.getEndNode() == end)
+                return edge;
+        }
+        return null;
+    }
+
+    public void resetGraph() {
+        for (List<Edge> row : graph){
+            for (Edge edge : row) {
+                edge.resetEdge();
+            }
+        }
+    }
+
     public int getSource() {
         return source;
     }
 
     public int getTarget() {
         return target;
+    }
+
+    public void printGraph(boolean show) {
+        if (show) {
+            System.out.println("\n\n---------------Graph--------------");
+            for (List row : graph)
+                System.out.println(row);
+        }
     }
 }

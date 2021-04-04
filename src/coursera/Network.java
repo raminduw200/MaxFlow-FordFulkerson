@@ -44,11 +44,15 @@ public class Network {
      Since using breadth first search need to take all nodes which are connected to a node.
      This will iterate through all connected nodes.
      */
-    public Iterable<Edge> iterate(int start){
-        return graph[start];
+    public Iterable<Edge> iterate(int node){
+        return graph[node];
     }
 
     public int getNumVertices() {
         return numVertices;
+    }
+
+    public List<Edge>[] getGraph() {
+        return graph;
     }
 }

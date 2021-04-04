@@ -1,5 +1,6 @@
 package coursera;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**********************************************************************************
@@ -17,7 +18,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        for (int j = 1; j < 2; j++) {
+        for (int j = 1; j < 10; j++) {
             //  Read the inputs from the file and assign to variables.
             InputReader fileReader = new InputReader(String.format("ladder_%s.txt", j));
             List<Integer> inputs = fileReader.getIntegerEdgesList();
@@ -34,14 +35,21 @@ public class Main {
                 network.addEdge(edge);
             }
 
+//            for (List<Edge> edges : network.getGraph()){
+//                System.out.println(edges);
+//            }
+
+            //  Solve the problem and return the answer.
             long startTime = System.currentTimeMillis();
-
             FordFulkersonMaxFlow solve = new FordFulkersonMaxFlow(network, s, t);
-
             long endTime = System.currentTimeMillis();
             long totalTime = endTime - startTime;
             System.out.println("Time spend : " + totalTime);
             System.out.println("Max Flow is : " + solve.maxFlow());
+
+//            for (List<Edge> edges : network.getGraph()){
+//                    System.out.println(edges);
+//            }
         }
     }
 }

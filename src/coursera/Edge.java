@@ -63,6 +63,6 @@ public class Edge {
     // ------------- toString -------------
     @Override
     public String toString() {
-        return  String.format("Edge : %2s ----%3d /%3d----> %2s", start, flow, capacity, end);
+        return  String.format("Edge:%2s --%3d /%3d-->%2s", start, flow, capacity, end);
     }
 }
