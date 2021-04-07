@@ -24,12 +24,13 @@ public class Main {
     private static final boolean showFlow = false;
     private static final boolean showGraph = false;
     private static final boolean showOptions = false;
-    private static final String datasetName = "ladder";
+    private static final String datasetName = "test/Test";
+//    private static final String datasetName = "ladder";
 
     public static void main(String[] args) {
 
-        System.out.println(String.format("|%10s|%10s|%20s|%10s|", "Dataset", "Nodes", "Time (Nano Seconds)", "Max Flow"));
-        System.out.println("|----------+----------+--------------------+----------|");
+        System.out.println(String.format("|%8s|%8s|%8s|%18s|%8s|%18s|", "Dataset", "Nodes", "Edges", "Time(Nano Seconds)", "Max Flow", "Edges * Max Flow"));
+        System.out.println("|--------+--------+--------+------------------+--------+------------------|");
 
         for (int j = 1; j < 10; j++) {
             //  Read the inputs from the file.
@@ -51,7 +52,7 @@ public class Main {
             int answer = solve.getMaxFlow();
             long endTime = System.nanoTime();
             long totalTime = endTime - startTime;
-            System.out.println(String.format("|%10s|%10s|%20s|%10s|", datasetName + j, n, totalTime, answer));
+            System.out.println(String.format("|%8s|%8s|%8s|%18s|%8s|%18s|", datasetName + j, n, solve.getNumOfEdges() ,totalTime, answer, solve.getNumOfEdges()*answer));
 
             solve.showWork();
             solve.printGraph(showGraph);

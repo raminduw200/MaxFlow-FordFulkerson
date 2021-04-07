@@ -76,6 +76,13 @@ public abstract class Network {
         return null;
     }
 
+    public int getNumOfEdges(){
+        int edgesCount = 0;
+        for (List<Edge> row : graph)
+            edgesCount += row.size();
+        return edgesCount;
+    }
+
     public void resetGraph() {
         for (List<Edge> row : graph){
             for (Edge edge : row) {

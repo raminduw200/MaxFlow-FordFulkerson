@@ -52,4 +52,22 @@ public class Edge implements Cloneable{
         else
             return  String.format("Edge : %2s --%3d /%3d--> %2s", startNode, flow, capacity, endNode);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Edge)) return false;
+
+        Edge edge = (Edge) o;
+
+        if (getStartNode() != edge.getStartNode()) return false;
+        return getEndNode() == edge.getEndNode();
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getStartNode();
+        result = 31 * result + getEndNode();
+        return result;
+    }
 }

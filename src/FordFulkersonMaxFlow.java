@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FordFulkersonMaxFlow extends Network{
-//    private int source, target, numVertices;
     private int maxFlow;
     private final boolean showWork;
     private ArrayList<Edge> augmentingPaths;
@@ -83,6 +82,7 @@ public class FordFulkersonMaxFlow extends Network{
     @Override
     public void resetGraph(){
         super.resetGraph();
+        augmentingPaths.removeAll(augmentingPaths);
         maxFlow = 0;
     }
 
