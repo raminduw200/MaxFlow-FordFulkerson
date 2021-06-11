@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 /**********************************************************************************
  * Name     :   Ramindu Walgama
- * UOW ID   :   w1790183
- * IIT ID   :   2019730
  *
  * Description : This is the implementation of Ford Fulkerson Maximum Flow Problem
  *               Algorithm using Breadth First Search (BFS). Uses Queue data
